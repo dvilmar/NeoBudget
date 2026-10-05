@@ -12,6 +12,9 @@ import type {
   TransactionFilterEntity,
 } from '@actual-app/core/types/models';
 
+import { pushModal } from '#modals/modalsSlice';
+import { useDispatch } from '#redux';
+
 import { FilterMenu } from './FilterMenu';
 import { NameFilter } from './NameFilter';
 
@@ -39,6 +42,7 @@ export function SavedFilterMenuButton({
   savedFilters: TransactionFilterEntity[];
 }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [nameOpen, setNameOpen] = useState(false);
   const [adding, setAdding] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -102,6 +106,26 @@ export function SavedFilterMenuButton({
           };
           onReloadSavedFilter(originalSavedFilter.current, 'reload');
         }
+        break;
+      case 'create-rule':
+        setMenuOpen(false);
+        dispatch(
+          pushModal({
+            modal: {
+              name: 'edit-rule',
+              options: {
+                rule: {
+                  stage: null,
+                  conditionsOp,
+                  conditions,
+                  actions: [
+                    { op: 'set', field: 'category', value: '', type: 'id' },
+                  ],
+                },
+              },
+            },
+          }),
+        );
         break;
       case 'clear-filter':
         setMenuOpen(false);

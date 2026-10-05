@@ -38,6 +38,7 @@ import { format as formatDate } from 'date-fns';
 import { isAccountFailedSync } from '#accounts/syncStatus';
 import { AnimatedRefresh } from '#components/AnimatedRefresh';
 import { Search } from '#components/common/Search';
+import { useAccountCurrency } from '#components/currencies/useAccountCurrency';
 import { FilterButton } from '#components/filters/FiltersMenu';
 import { FiltersStack } from '#components/filters/FiltersStack';
 import type { SavedFilter } from '#components/filters/SavedFilterMenuButton';
@@ -272,7 +273,14 @@ export function AccountHeader({
 
   return (
     <>
-      <View style={{ ...styles.pageContent, paddingBottom: 10, flexShrink: 0 }}>
+      <View
+        style={{
+          paddingLeft: 32,
+          paddingRight: 32,
+          paddingBottom: 14,
+          flexShrink: 0,
+        }}
+      >
         <View
           style={{
             flexDirection: 'column',
@@ -623,6 +631,7 @@ function AccountNameField({
   saveNameError,
   onSaveName,
 }: AccountNameFieldProps) {
+  const currencyCode = useAccountCurrency(account?.id);
   const { t } = useTranslation();
   const [editingName, setEditingName] = useState(false);
 
@@ -642,8 +651,8 @@ function AccountNameField({
               onUpdate={handleSave}
               onEscape={() => setEditingName(false)}
               style={{
-                fontSize: 25,
-                fontWeight: 500,
+                fontSize: 28,
+                fontWeight: 600,
                 marginTop: -3,
                 marginBottom: -4,
                 marginLeft: -6,
@@ -675,8 +684,9 @@ function AccountNameField({
         >
           <View
             style={{
-              fontSize: 25,
-              fontWeight: 500,
+              fontSize: 28,
+              fontWeight: 600,
+              letterSpacing: -0.4,
               marginRight: 5,
               marginBottom: -1,
             }}
@@ -686,6 +696,19 @@ function AccountNameField({
               ? t('Closed: {{ accountName }}', { accountName })
               : accountName}
           </View>
+
+          {currencyCode && (
+            <View
+              style={{
+                fontSize: 12,
+                marginRight: 8,
+                color: theme.pageTextSubdued,
+              }}
+              data-testid="account-currency"
+            >
+              {currencyCode}
+            </View>
+          )}
 
           <View style={{ flexDirection: 'row', width: 50 }}>
             {isNameEditable && account && (

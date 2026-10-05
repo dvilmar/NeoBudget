@@ -3,10 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
 
 import {
+  SvgChartBar,
   SvgCheveronDown,
   SvgCheveronRight,
   SvgCog,
   SvgCreditCard,
+  SvgCurrencyDollar,
+  SvgHome,
+  SvgPiggyBank,
   SvgReports,
   SvgStoreFront,
   SvgTag,
@@ -35,6 +39,8 @@ export function PrimaryButtons() {
   const isActive = [
     '/payees',
     '/rules',
+    '/activity',
+    '/webhooks',
     '/bank-sync',
     '/settings',
     '/tools',
@@ -48,8 +54,19 @@ export function PrimaryButtons() {
 
   return (
     <View data-testid="sidebar-primary-buttons" style={{ flexShrink: 0 }}>
+      <Item title={t('Overview')} Icon={SvgHome} to="/overview" />
       <Item title={t('Budget')} Icon={SvgWallet} to="/budget" />
       <Item title={t('Reports')} Icon={SvgReports} to="/reports" />
+      <Item title={t('Insights')} Icon={SvgReports} to="/insights" />
+      <Item title={t('Investments')} Icon={SvgChartBar} to="/investments" />
+      <Item title={t('Piggy banks')} Icon={SvgPiggyBank} to="/piggy-banks" />
+      <Item title={t('Debts')} Icon={SvgCreditCard} to="/debts" />
+      <Item title={t('Currencies')} Icon={SvgCurrencyDollar} to="/currencies" />
+      <Item
+        title={t('Subscriptions')}
+        Icon={SvgCalendar3}
+        to="/subscriptions"
+      />
       <Item title={t('Schedules')} Icon={SvgCalendar3} to="/schedules" />
       <Item
         title={t('More')}
@@ -77,6 +94,20 @@ export function PrimaryButtons() {
               title={t('Bank Sync')}
               Icon={SvgCreditCard}
               to="/bank-sync"
+              indent={15}
+            />
+          )}
+          <SecondaryItem
+            title={t('Activity')}
+            Icon={SvgTuning}
+            to="/activity"
+            indent={15}
+          />
+          {isUsingServer && (
+            <SecondaryItem
+              title={t('Webhooks')}
+              Icon={SvgCog}
+              to="/webhooks"
               indent={15}
             />
           )}

@@ -72,13 +72,13 @@ export function ReportCard({
     <View
       ref={setCardElement}
       style={{
-        backgroundColor: theme.tableBackground,
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
+        backgroundColor: theme.cardBackground,
+        border: `1px solid ${theme.cardBorder}`,
+        borderRadius: 8,
+        overflow: 'hidden',
         width: '100%',
         height: '100%',
-        boxShadow: '0 2px 6px rgba(0, 0, 0, .15)',
-        transition: 'box-shadow .25s',
+        transition: 'border-color .25s',
         ...(isEditing
           ? {
               '& .recharts-surface:hover': {
@@ -94,7 +94,7 @@ export function ReportCard({
               },
             }),
         ':hover': {
-          ...(to ? { boxShadow: '0 4px 6px rgba(0, 0, 0, .15)' } : null),
+          ...(to ? { borderColor: theme.tableBorderHover } : null),
           ...(isEditing ? { cursor: 'move', filter: 'grayscale(0)' } : null),
         },
         ...(to ? null : containerProps),

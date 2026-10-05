@@ -334,7 +334,11 @@ export function ManageRules({
           <RulesHeader />
           <InfiniteScrollWrapper loadMore={loadMore}>
             {filteredRules.length === 0 ? (
-              <EmptyMessage text={t('No rules')} style={{ marginTop: 15 }} />
+              <EmptyMessage
+                text={t(
+                  'No rules yet. Create one to automate your transactions.',
+                )}
+              />
             ) : (
               <RulesList
                 rules={filteredRules}
@@ -373,16 +377,15 @@ export function ManageRules({
   );
 }
 
-function EmptyMessage({ text, style }) {
+function EmptyMessage({ text, style = {} }: { text: string; style?: object }) {
   return (
     <View
       style={{
         textAlign: 'center',
         color: theme.pageTextSubdued,
-        fontStyle: 'italic',
         fontSize: 13,
-        marginTop: 5,
-        style,
+        padding: '40px 20px',
+        ...style,
       }}
     >
       {text}

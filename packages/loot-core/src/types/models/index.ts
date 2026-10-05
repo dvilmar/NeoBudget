@@ -1,5 +1,9 @@
 export type * from './account';
 export type * from './account-group';
+export type * from './investment';
+export type * from './transaction-extras';
+export type * from './debt';
+export type * from './piggy-bank';
 export type * from './akahu';
 export type * from './bank';
 export type * from './bank-sync';

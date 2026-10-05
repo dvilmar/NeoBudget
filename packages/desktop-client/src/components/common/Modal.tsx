@@ -126,14 +126,14 @@ export const Modal = ({
                   {...containerProps}
                   style={{
                     flex: 1,
-                    padding: 10,
+                    padding: 20,
                     willChange: 'opacity, transform',
                     maxWidth: '90vw',
                     minWidth: '90vw',
                     maxHeight: 'calc(var(--visual-viewport-height) * 0.9)',
                     minHeight: 0,
-                    borderRadius: 6,
-                    //border: '1px solid ' + theme.modalBorder,
+                    borderRadius: 10,
+                    border: '1px solid ' + theme.modalBorder,
                     color: theme.pageText,
                     backgroundColor: theme.modalBackground,
                     opacity: isHidden ? 0 : 1,
@@ -141,7 +141,7 @@ export const Modal = ({
                       minWidth: tokens.breakpoint_small,
                     },
                     overflowY: 'auto',
-                    ...styles.shadowLarge,
+                    boxShadow: '0 12px 32px rgba(22, 23, 29, 0.12)',
                     ...containerProps?.style,
                   }}
                 >
@@ -325,7 +325,7 @@ export function ModalHeader({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        height: 60,
+        height: 48,
         flex: 'none',
         display: 'flex',
         margin: 0,
@@ -427,8 +427,8 @@ export function ModalTitle({
     <Input
       ref={inputRef}
       style={{
-        fontSize: 25,
-        fontWeight: 700,
+        fontSize: 18,
+        fontWeight: 600,
         textAlign: 'center',
         ...style,
       }}
@@ -451,11 +451,11 @@ export function ModalTitle({
         <AutoTextSize
           as={Text}
           minFontSizePx={15}
-          maxFontSizePx={25}
+          maxFontSizePx={18}
           onClick={onTitleClick}
           style={{
-            fontSize: 25,
-            fontWeight: 700,
+            fontSize: 18,
+            fontWeight: 600,
             textAlign: 'center',
             ...(isEditable && styles.underlinedText),
             ...style,
@@ -467,8 +467,8 @@ export function ModalTitle({
         <TextOneLine
           onClick={onTitleClick}
           style={{
-            fontSize: 25,
-            fontWeight: 700,
+            fontSize: 18,
+            fontWeight: 600,
             textAlign: 'center',
             ...(isEditable && styles.underlinedText),
             ...style,

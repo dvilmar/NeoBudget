@@ -48,14 +48,13 @@ export function Search({
         width,
         height,
         flex: '',
-        borderColor: isInModal ? undefined : 'transparent',
-        backgroundColor: isInModal ? undefined : theme.formInputBackground,
+        borderColor: isInModal ? undefined : theme.cardBorder,
+        borderRadius: 6,
+        backgroundColor: isInModal ? undefined : theme.cardBackground,
         ...style,
         ...(focused && {
           boxShadow: '0 0 0 1px ' + theme.formInputShadowSelected,
-          ...(isInModal
-            ? {}
-            : { backgroundColor: theme.formInputBackgroundSelected }),
+          ...(isInModal ? {} : { borderColor: theme.formInputShadowSelected }),
         }),
       }}
     >

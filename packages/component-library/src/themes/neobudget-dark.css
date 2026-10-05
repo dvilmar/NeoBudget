@@ -1,0 +1,168 @@
+/* NeoBudget dark: modern fintech with a lime accent. Loaded after
+   dark.css, so it only overrides the tokens that define the look. */
+:root {
+  --font-family: 'Geist', 'Inter Variable', system-ui, sans-serif;
+  --neo-accent: #c8f03c;
+  --neo-accent-hover: #d8f56a;
+  --neo-on-accent: #0a0c0f;
+
+  --color-pageBackground: #0a0c0f;
+  --color-pageBackgroundModalActive: #14181d;
+  --color-pageText: #f2f4f5;
+  --color-pageTextLight: #9ba6b2;
+  --color-pageTextSubdued: #9ba6b2;
+  --color-pageTextDark: #ffffff;
+  --color-pageTextPositive: var(--neo-accent);
+  --color-pageTextLink: var(--neo-accent);
+  --color-pageTextLinkLight: #8fa63a;
+
+  --color-cardBackground: #14181d;
+  --color-cardBorder: #222931;
+  --color-cardShadow: rgba(0, 0, 0, 0.5);
+
+  --color-tableBackground: #14181d;
+  --color-tableRowBackgroundHover: #1a2027;
+  --color-tableText: #f2f4f5;
+  --color-tableTextLight: #9ba6b2;
+  --color-tableTextSubdued: #6b7684;
+  --color-tableTextSelected: #ffffff;
+  --color-tableTextHover: #ffffff;
+  --color-tableTextInactive: #9ba6b2;
+  --color-tableHeaderText: #9ba6b2;
+  --color-tableHeaderBackground: #14181d;
+  --color-tableBorder: #222931;
+  --color-tableBorderSelected: var(--neo-accent);
+  --color-tableBorderHover: #8fa63a;
+  --color-tableBorderSeparator: #2b343d;
+  --color-tableRowBackgroundHighlight: #25300f;
+  --color-tableRowBackgroundHighlightText: #f2f4f5;
+  --color-tableRowHeaderBackground: #1a2027;
+  --color-tableRowHeaderText: #f2f4f5;
+
+  --color-numberPositive: #c8f03c;
+  --color-numberNegative: #ff9478;
+
+  --color-sidebarBackground: #0a0c0f;
+  --color-sidebarItemBackgroundHover: #1a2027;
+  --color-sidebarItemAccentSelected: var(--neo-accent);
+  --color-sidebarItemText: #9ba6b2;
+  --color-sidebarItemTextSelected: var(--neo-accent);
+  --color-sidebarBudgetName: #f2f4f5;
+  --color-sidebarHeaderText: #ffffff;
+  --color-sidebarTextSubdued: #9ba6b2;
+  --color-sidebarTextMuted: #6b7684;
+  --color-sidebarBorder: #222931;
+  --color-sidebarControlBackground: #1a2027;
+  --color-sidebarBrand: var(--neo-accent);
+
+  --color-menuBackground: #1a2027;
+  --color-menuItemBackground: #1a2027;
+  --color-menuItemBackgroundHover: #222931;
+  --color-menuItemText: #f2f4f5;
+  --color-menuItemTextSelected: var(--neo-accent);
+  --color-menuBorder: #2b343d;
+  --color-menuBorderHover: #8fa63a;
+
+  --color-modalBackground: #14181d;
+  --color-modalBorder: #2b343d;
+  --color-mobileHeaderBackground: #0a0c0f;
+  --color-mobileHeaderText: #f2f4f5;
+  --color-mobileHeaderTextSubdued: #9ba6b2;
+  --color-mobilePageBackground: #0a0c0f;
+  --color-mobileNavBackground: #0a0c0f;
+  --color-mobileHeaderTextHover: rgba(242, 244, 245, 0.08);
+  --color-mobileNavItem: #9ba6b2;
+  --color-mobileNavItemSelected: var(--neo-accent);
+  --color-mobileAccountShadow: #222931;
+  --color-mobileAccountText: #f2f4f5;
+  --color-mobileTransactionSelected: var(--neo-accent);
+  --color-mobileViewTheme: #0a0c0f;
+  --color-mobileConfigServerViewTheme: #0a0c0f;
+
+  --color-buttonPrimaryText: var(--neo-on-accent);
+  --color-buttonPrimaryTextHover: var(--neo-on-accent);
+  --color-buttonPrimaryBackground: var(--neo-accent);
+  --color-buttonPrimaryBackgroundHover: var(--neo-accent-hover);
+  --color-buttonPrimaryShadow: rgba(0, 0, 0, 0.5);
+  --color-buttonPrimaryDisabledText: #6b7684;
+  --color-buttonPrimaryDisabledBackground: #222931;
+
+  --color-buttonNormalText: #f2f4f5;
+  --color-buttonNormalBackground: #1a2027;
+  --color-buttonNormalBackgroundHover: #222931;
+  --color-buttonNormalBorder: #2b343d;
+  --color-buttonNormalShadow: rgba(0, 0, 0, 0.4);
+  --color-buttonNormalSelectedText: var(--neo-on-accent);
+  --color-buttonNormalSelectedBackground: var(--neo-accent);
+  --color-buttonNormalDisabledText: #6b7684;
+
+  --color-formLabelText: var(--neo-accent);
+  --color-formInputBackground: #1a2027;
+  --color-formInputBackgroundSelected: #1a2027;
+  --color-formInputBorder: #2b343d;
+  --color-formInputBorderSelected: var(--neo-accent);
+  --color-formInputText: #f2f4f5;
+  --color-formInputShadowSelected: #8fa63a;
+  --color-checkboxText: var(--neo-on-accent);
+  --color-checkboxBackgroundSelected: var(--neo-accent);
+  --color-checkboxBorderSelected: var(--neo-accent);
+  --color-checkboxToggleBackgroundSelected: var(--neo-accent);
+
+  --color-pillBackground: #222931;
+  --color-pillBackgroundLight: #1a2027;
+  --color-pillText: #f2f4f5;
+  --color-pillBorder: #2b343d;
+  --color-pillTextHighlighted: var(--neo-accent);
+  --color-pillBorderSelected: var(--neo-accent);
+
+  --color-budgetCurrentMonth: #14181d;
+  --color-budgetOtherMonth: #0a0c0f;
+  --color-budgetHeaderCurrentMonth: #0a0c0f;
+  --color-budgetHeaderOtherMonth: #0a0c0f;
+
+  --color-floatingActionBarBackground: var(--neo-accent);
+  --color-floatingActionBarText: var(--neo-on-accent);
+  --color-upcomingBackground: #25300f;
+  --color-upcomingText: var(--neo-accent);
+  --color-upcomingBorder: #8fa63a;
+
+  --color-reportsBlue: #7aa2ff;
+  --color-reportsGreen: #c8f03c;
+  --color-reportsRed: #ff9478;
+
+  --color-sidebarItemBackgroundSelected: color-mix(
+    in srgb,
+    var(--neo-accent) 14%,
+    transparent
+  );
+  --color-sidebarBorder: transparent;
+  --color-sidebarItemBackgroundHover: #14181d;
+  --color-numberNegative: #ff9478;
+  --color-budgetNumberNegative: #ff9478;
+
+  /* Structure of the minimal layout: flat sidebar with a hairline border,
+     neutral selected item, thin lines. The lime stays for actions. */
+  --color-sidebarBackground: #0a0c0f;
+  --color-sidebarBorder: #222931;
+  --color-sidebarItemBackgroundSelected: #1a2027;
+  --color-sidebarItemTextSelected: #f2f4f5;
+  --color-sidebarItemAccentSelected: #f2f4f5;
+  --color-cardBackground: #0f1216;
+  --color-cardBorder: #222931;
+  --color-tableBackground: #0f1216;
+  --color-tableHeaderBackground: #0f1216;
+  --color-tableBorder: #1a2027;
+  --color-tableRowBackgroundHover: #14181d;
+  --color-tableRowHeaderBackground: #14181d;
+  --color-modalBackground: #0f1216;
+  --color-budgetCurrentMonth: #0f1216;
+  --color-chartQual1: #7aa2ff;
+  --color-chartQual2: #c8f03c;
+  --color-chartQual3: #ffb454;
+  --color-chartQual4: #ff9478;
+  --color-chartQual5: #b79cff;
+  --color-chartQual6: #5fd3de;
+  --color-chartQual7: #8a93a6;
+  --color-chartQual8: #e8d36a;
+  --color-chartQual9: #f08ab5;
+}

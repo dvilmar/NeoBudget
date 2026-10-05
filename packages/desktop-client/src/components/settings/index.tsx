@@ -55,7 +55,7 @@ function About() {
     <Setting>
       <Text>
         <Trans>
-          <strong>Actual</strong> is a super fast privacy-focused app for
+          <strong>NeoBudget</strong> is a super fast privacy-focused app for
           managing your finances.
         </Trans>
       </Text>
@@ -227,7 +227,7 @@ export function Settings() {
         style={{
           marginTop: 10,
           flexShrink: 0,
-          maxWidth: 530,
+          maxWidth: 760,
           width: '100%',
           gap: 30,
           paddingBottom: MOBILE_NAV_HEIGHT,

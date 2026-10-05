@@ -89,7 +89,9 @@ export function MonteCarloGraph({
             bottom: compact ? 0 : 10,
           }}
         >
-          {!compact && <CartesianGrid strokeDasharray="3 3" />}
+          {!compact && (
+            <CartesianGrid strokeDasharray="3 3" stroke={theme.tableBorder} />
+          )}
           <XAxis
             dataKey="age"
             hide={compact}

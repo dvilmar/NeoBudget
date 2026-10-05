@@ -21,7 +21,7 @@ import { saveGlobalPrefs } from '#prefs/prefsSlice';
 import { useDispatch, useSelector } from '#redux';
 import { loggedIn, signOut } from '#users/usersSlice';
 
-import { Title } from './subscribe/common';
+import { authCardStyle, Title } from './subscribe/common';
 
 export function ElectronServerConfig({
   onDoNotUseServer,
@@ -313,7 +313,7 @@ export function ConfigServer() {
         );
       default:
         return t(
-          'Server does not look like an Actual server. Is it set up correctly?',
+          'Server does not look like an NeoBudget server. Is it set up correctly?',
         );
     }
   }
@@ -385,7 +385,7 @@ export function ConfigServer() {
   });
 
   return (
-    <View style={{ maxWidth: 500, marginTop: -30 }}>
+    <View style={{ ...authCardStyle, maxWidth: 500, color: theme.pageText }}>
       {(userData || currentUrl) && (
         <MobileBackButton
           onPress={() =>
@@ -419,13 +419,13 @@ export function ConfigServer() {
             {currentUrl ? (
               <Trans>
                 Existing sessions will be logged out and you will log in to this
-                server. We will validate that Actual is running at this URL.
+                server. We will validate that NeoBudget is running at this URL.
               </Trans>
             ) : (
               <Trans>
                 A sync server keeps your budget up to date across all your
                 devices and unlocks features like bank syncing. It is completely
-                optional: Actual works great on just this device too.
+                optional: NeoBudget works great on just this device too.
               </Trans>
             )}
           </Text>

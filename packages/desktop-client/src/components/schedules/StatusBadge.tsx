@@ -99,8 +99,9 @@ export function StatusBadge({ status }: { status: ScheduleStatusType }) {
       style={{
         color,
         backgroundColor,
-        padding: '6px 8px',
-        borderRadius: 4,
+        padding: '3px 9px',
+        fontSize: 12,
+        borderRadius: 999,
         flexDirection: 'row',
         alignItems: 'center',
         flexShrink: 0,
@@ -108,9 +109,9 @@ export function StatusBadge({ status }: { status: ScheduleStatusType }) {
     >
       <Icon
         style={{
-          width: 13,
-          height: 13,
-          marginRight: 7,
+          width: 11,
+          height: 11,
+          marginRight: 5,
         }}
       />
       <Text style={{ lineHeight: '1em' }}>

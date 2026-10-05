@@ -65,8 +65,11 @@ export function Item({
           ...styles.mediumText,
           paddingTop: 9,
           paddingBottom: 9,
-          paddingLeft: 19 + indent,
-          paddingRight: 10,
+          paddingLeft: 8 + indent,
+          paddingRight: 8,
+          marginLeft: 12,
+          marginRight: 12,
+          borderRadius: 6,
           textDecoration: 'none',
           color: theme.sidebarItemText,
           ...(forceHover ? hoverStyle : {}),
@@ -74,8 +77,7 @@ export function Item({
         }}
         forceActive={forceActive}
         activeStyle={{
-          borderLeft: '4px solid ' + theme.sidebarItemTextSelected,
-          paddingLeft: 19 + indent - 4,
+          backgroundColor: theme.sidebarItemBackgroundSelected,
           color: theme.sidebarItemTextSelected,
         }}
         to={to}

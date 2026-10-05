@@ -1,87 +1,80 @@
-<p align="center">
-  <img src="/demo.png" alt="Actualbudget" />
-</p>
+# NeoBudget
 
-## Getting Started
+Una sola app para el dinero de todos los días y para las inversiones: presupuesto por sobres, multidivisa, deudas, huchas, suscripciones y cartera de inversión, con tus datos en tu propio servidor.
 
-Actual is a local-first personal finance tool. It is 100% free and open-source, written in NodeJS, it has a synchronization element so that all your changes can move between devices without any heavy lifting.
+NeoBudget es un fork de [Actual Budget](https://github.com/actualbudget/actual) (licencia MIT) al que se le han añadido ideas de [Firefly III](https://www.firefly-iii.org/) (multidivisa, deudas, huchas, suscripciones, webhooks) y de [Ghostfolio](https://ghostfol.io/) (inversiones y rentabilidad). Todo está reimplementado sobre la base de Actual; no se ha copiado código de proyectos AGPL.
 
-If you are interested in contributing, or want to know how development works, see our [contributing](https://actualbudget.org/docs/contributing/) document we would love to have you.
+> Estado: proyecto personal en desarrollo. Una parte de las integraciones con brokers todavía no se ha probado con cuentas reales (ver [Integraciones](#integraciones)).
 
-Want to say thanks? Click the ⭐ at the top of the page.
+## Qué incluye
 
-## Key Links
+**Presupuesto** (heredado de Actual)
 
-- Actual [discord](https://discord.gg/pRYNYr4W5A) community.
-- Actual [Community Documentation](https://actualbudget.org/docs)
-- [Frequently asked questions](https://actualbudget.org/docs/faq)
+- Presupuesto por sobres, cuentas, transacciones, reglas, calendario de pagos e informes.
+- Sincronización entre dispositivos con servidor propio (SQLite, cifrado opcional de extremo a extremo).
 
-## Installation
+**Lo que añade NeoBudget**
 
-There are four ways to deploy Actual:
+- **Resumen**: patrimonio neto, dinero por asignar, inversión, gasto restante por día, próximos pagos, huchas y mayores gastos del mes.
+- **Inversiones**: posiciones con coste medio o FIFO, valor de mercado y ganancia, rentabilidad ponderada en el tiempo (sin que los ingresos de dinero la distorsionen) con comparación frente a un benchmark, dividendos y su calendario, reparto de la cartera, análisis de riesgo (X-Ray), calculadora FIRE con fondo de emergencia, lista de seguimiento, edición de activos y operaciones, importación de CSV y exportación a CSV.
+- **Multidivisa**: divisa por cuenta, tipos de cambio, totales convertidos a tu divisa base e importe en divisa extranjera por transacción, con sugerencia al tipo del día.
+- **Deudas**: préstamos e hipotecas con pagos, intereses, saldo pendiente y tabla de amortización.
+- **Huchas**: objetivos de ahorro con movimientos vinculados a transacciones reales.
+- **Suscripciones**: coste mensual y anual a partir de tus pagos programados.
+- **Extras de transacción**: enlaces entre transacciones, adjuntos y registro de actividad.
+- **Webhooks**: avisos a una URL propia cuando cambian tus transacciones.
+- **Insights**: ingresos y gastos por periodo, tasa de ahorro y comparación con el mismo mes del año anterior.
+- **Diseño propio**: tema claro limpio y tema oscuro, con la tipografía Geist.
 
-1. One-click deployment [via PikaPods](https://www.pikapods.com/pods?run=actual) (~2.00 $/month) - recommended for non-technical users
-1. Managed hosting [via Fly.io](https://actualbudget.org/docs/install/fly) (~1.50 $/month)
-1. Self-hosted by using [a Docker image](https://actualbudget.org/docs/install/docker)
-1. Local-only apps - [downloadable Windows, Mac and Linux apps](https://actualbudget.org/download/) you can run on your device
+La lista detallada está en [`docs/neobudget/features.md`](docs/neobudget/features.md).
 
-Learn more in the [installation instructions docs](https://actualbudget.org/docs/install/).
+## Integraciones
 
-## Ready to Start Budgeting?
+| Origen                                                     | Estado                                                                                        |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Interactive Brokers (Flex Web Service)                     | Implementado, sin probar con credenciales reales                                              |
+| Trade Republic                                             | Implementado, **API no oficial** y sin probar contra el servicio real. El PIN nunca se guarda |
+| CSV de brokers                                             | Funciona (formatos en inglés y español, sin duplicados al repetir)                            |
+| Precios (Yahoo Finance, CoinGecko) y tipos de cambio (BCE) | Funciona a través del servidor                                                                |
+| Bybit, Santander (Enable Banking)                          | Pendientes                                                                                    |
 
-Read about [Envelope budgeting](https://actualbudget.org/docs/getting-started/envelope-budgeting) to know more about the idea behind Actual Budget.
+Las conexiones de brokers solo funcionan con servidor de sincronización conectado.
 
-### Are you new to budgeting or want to start fresh?
+## Empezar
 
-Check out the community's [Starting Fresh](https://actualbudget.org/docs/getting-started/starting-fresh) guide so you can quickly get up and running!
+Requisitos: Node 22 o superior y Yarn 4.
 
-### Are you migrating from other budgeting apps?
+```bash
+yarn install
+yarn start               # app en http://localhost:3001 (sin servidor: "Don't use a server" y "View demo")
+yarn start:server-dev    # app con servidor de sincronización en http://localhost:5006
+```
 
-Check out the community's [Migration](https://actualbudget.org/docs/migration/) guide to start jumping on the Actual Budget train!
+Para alojarlo en un Raspberry Pi, un VPS o un PC propio (variables de entorno, systemd, HTTPS y copias de seguridad), sigue [`docs/neobudget/deployment.md`](docs/neobudget/deployment.md).
 
-## Documentation
+## Estructura del código
 
-We have a wide range of documentation on how to use Actual, this is all available in our [Community Documentation](https://actualbudget.org/docs), this includes topics on Budgeting, Account Management, Tips & Tricks and some documentation for developers.
+- `packages/loot-core`: lógica, base de datos y cálculos (corre en cualquier plataforma).
+- `packages/desktop-client`: interfaz web en React.
+- `packages/desktop-electron`: aplicación de escritorio.
+- `packages/sync-server`: servidor de sincronización, precios, brokers, adjuntos y webhooks.
+- `packages/component-library`: componentes y temas.
+- `docs/neobudget`: documentación propia de NeoBudget.
 
-## Contributing
+Las novedades de NeoBudget van en módulos y tablas nuevos, con migraciones solo aditivas, para poder traer los cambios de Actual (`upstream`) sin conflictos.
 
-Actual is a community driven product. Learn more about [contributing to Actual](https://actualbudget.org/docs/contributing/).
+## Seguridad
 
-### Code structure
+- Tus datos viven en tu servidor. Usa HTTPS si lo expones fuera de tu red.
+- Los PIN y las contraseñas de brokers no se guardan. Los tokens de Interactive Brokers se guardan como secretos del servidor.
+- Los webhooks bloquean redes privadas por defecto y los adjuntos validan tipo y tamaño. Adjuntos y webhooks todavía no están ligados a un usuario concreto, así que no compartas el servidor con personas en las que no confíes.
 
-The Actual app is split up into a few packages:
+## Contribuir
 
-- loot-core - The core application that runs on any platform
-- desktop-client - The desktop UI
-- desktop-electron - The desktop app
+Revisa [`CLAUDE.md`](CLAUDE.md) y [`AGENTS.md`](AGENTS.md) para las reglas del repositorio, y [`CONTRIBUTING.md`](CONTRIBUTING.md) para el flujo general.
 
-More information on the project structure is available in our [community documentation](https://actualbudget.org/docs/contributing/project-details).
+## Créditos y licencia
 
-### Feature Requests
+NeoBudget se basa en el trabajo de la comunidad de [Actual Budget](https://actualbudget.org). Gracias a sus autores y colaboradores.
 
-Current feature requests can be seen [here](https://github.com/actualbudget/actual/issues?q=is%3Aissue+label%3A%22needs+votes%22+sort%3Areactions-%2B1-desc).
-Vote for your favorite requests by reacting :+1: to the top comment of the request.
-
-To add new feature requests, open a new Issue of the "Feature Request" type.
-
-### Translation
-
-Make Actual Budget accessible to more people by helping with the [Internationalization](https://actualbudget.org/docs/contributing/i18n/) of Actual. We are using a crowd sourcing tool to manage the translations, see our [Weblate Project](https://hosted.weblate.org/projects/actualbudget/). Weblate proudly supports open-source software projects through their [Libre plan](https://weblate.org/en/hosting/#libre).
-
-<a href="https://hosted.weblate.org/engage/actualbudget/">
-<img src="https://hosted.weblate.org/widget/actualbudget/actual/287x66-grey.png" alt="Translation status" />
-</a>
-
-## Repo Activity
-
-![Alt](https://repobeats.axiom.co/api/embed/e20537dd8b74956f86736726ccfbc6f0565bec22.svg 'Repobeats analytics image')
-
-## Sponsors
-
-Thanks to our wonderful sponsors who make Actual Budget possible!
-
-<a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
-<a href="https://depot.dev"><img src="https://depot.dev/badges/built-with-depot.svg" alt="Built with Depot" /></a>
-<a href="https://www.docker.com"><img src="https://www.docker.com/app/uploads/2023/05/symbol_blue-docker-logo.png" alt="Docker" height="48" /></a>
-<a href="https://github.com"><img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="GitHub" height="48" /></a>
-<a href="https://www.anthropic.com"><img src="https://avatars.githubusercontent.com/u/76263028?s=200&v=4" alt="Anthropic" height="48" /></a>
+Licencia MIT. Consulta [`LICENSE.txt`](LICENSE.txt).

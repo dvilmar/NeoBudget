@@ -22,15 +22,19 @@ export function PageHeader({ title, style }: PageHeaderProps) {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginLeft: 20,
+        marginLeft: 32,
+        marginBottom: 20,
+        minHeight: 44,
         ...style,
       }}
     >
       <View
         style={{
           flexDirection: 'row',
-          fontSize: 25,
-          fontWeight: 500,
+          fontSize: 28,
+          fontWeight: 600,
+          letterSpacing: -0.4,
+          color: theme.pageText,
         }}
       >
         {typeof title === 'string' ? <Text>{title}</Text> : title}
@@ -163,7 +167,7 @@ type PageProps = {
 export function Page({ header, style, padding, children, footer }: PageProps) {
   const { isNarrowWidth } = useResponsive();
   const mobileHeaderSlot = useContext(MobilePageHeaderSlotContext);
-  const childrenPadding = padding != null ? padding : isNarrowWidth ? 10 : 20;
+  const childrenPadding = padding != null ? padding : isNarrowWidth ? 10 : 32;
 
   const headerToRender =
     typeof header === 'string' ? (

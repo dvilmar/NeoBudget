@@ -33,6 +33,13 @@
     "#i18n": "./src/i18n.ts",
     "#mocks": "./src/mocks.tsx",
     "#mocks/*": "./src/mocks/*.ts",
+    "#components/investments": "./src/components/investments/index.tsx",
+    "#components/investments/format": "./src/components/investments/format.ts",
+    "#components/overview/border": "./src/components/overview/border.ts",
+    "#components/overview/rowStyle": "./src/components/overview/rowStyle.ts",
+    "#components/overview/monoFont": "./src/components/overview/monoFont.ts",
+    "#components/currencies/useConversion": "./src/components/currencies/useConversion.ts",
+    "#components/currencies/useAccountCurrency": "./src/components/currencies/useAccountCurrency.ts",
     "#components/forms": "./src/components/forms/index.tsx",
     "#components/banksync": "./src/components/banksync/index.tsx",
     "#components/banksync/bankSyncUtils": "./src/components/banksync/bankSyncUtils.ts",
@@ -141,6 +148,10 @@
     "vrt": "cross-env VRT=true npx playwright test --browser=chromium",
     "playwright": "playwright",
     "typecheck": "tsgo -b && tsc-strict"
+  },
+  "dependencies": {
+    "@fontsource/geist": "^5.3.0",
+    "@fontsource/geist-mono": "^5.3.0"
   },
   "devDependencies": {
     "@actual-app/components": "workspace:*",

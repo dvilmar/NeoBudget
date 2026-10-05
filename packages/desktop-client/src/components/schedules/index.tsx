@@ -11,6 +11,7 @@ import type { ScheduleEntity } from '@actual-app/core/types/models';
 
 import { Search } from '#components/common/Search';
 import { FeatureErrorFallback } from '#components/FeatureErrorFallback';
+import { border } from '#components/overview/border';
 import { Page } from '#components/Page';
 import { useSchedules } from '#hooks/useSchedules';
 import { pushModal } from '#modals/modalsSlice';
@@ -120,6 +121,12 @@ export function Schedules() {
           onSelect={onEdit}
           onAction={onAction}
           style={{ backgroundColor: theme.tableBackground }}
+          tableStyle={{
+            border,
+            borderRadius: 8,
+            overflow: 'hidden',
+            backgroundColor: theme.cardBackground,
+          }}
         />
 
         <View

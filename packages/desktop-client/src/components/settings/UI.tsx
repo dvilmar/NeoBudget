@@ -23,12 +23,12 @@ export const Setting = ({ primaryAction, style, children }: SettingProps) => {
     <View
       className={css([
         {
-          backgroundColor: theme.pillBackground,
+          backgroundColor: theme.cardBackground,
           alignSelf: 'flex-start',
           alignItems: 'flex-start',
-          padding: 15,
-          borderRadius: 4,
-          border: '1px solid ' + theme.pillBorderDark,
+          padding: '18px 20px',
+          borderRadius: 8,
+          border: '1px solid ' + theme.cardBorder,
           width: '100%',
         },
         style,
@@ -76,7 +76,7 @@ export const AdvancedToggle = ({ children }: AdvancedToggleProps) => {
         }
       }}
     >
-      <View style={{ fontSize: 20, fontWeight: 500, flexShrink: 0 }}>
+      <View style={{ fontSize: 16, fontWeight: 600, flexShrink: 0 }}>
         <Trans>Advanced Settings</Trans>
       </View>
       {children}
@@ -117,7 +117,7 @@ export function Column({
         ...style,
       }}
     >
-      <Text style={{ fontWeight: 500 }}>{title}</Text>
+      <Text style={{ fontSize: 13, fontWeight: 600 }}>{title}</Text>
       <View style={{ alignItems: 'flex-start', gap: '1em', width: '100%' }}>
         {children}
       </View>

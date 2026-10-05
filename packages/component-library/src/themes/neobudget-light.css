@@ -1,0 +1,136 @@
+/* NeoBudget light: clean and minimal. Loaded after light.css, so it only
+   overrides the tokens that define the look. */
+:root {
+  --font-family: 'Geist', 'Inter Variable', system-ui, sans-serif;
+  --neo-accent: #2b4fd8;
+  --neo-accent-hover: #4a68e0;
+  --neo-ink: #16181d;
+
+  --color-pageBackground: #fbfbfa;
+  --color-pageBackgroundModalActive: #f0f0ed;
+  --color-pageText: var(--neo-ink);
+  --color-pageTextLight: #3f4654;
+  --color-pageTextSubdued: #5b6270;
+  --color-pageTextDark: var(--neo-ink);
+  --color-pageTextPositive: var(--neo-accent);
+  --color-pageTextLink: var(--neo-accent);
+  --color-pageTextLinkLight: #8fa3ee;
+
+  --color-cardBackground: #ffffff;
+  --color-cardBorder: #e6e6e3;
+  --color-cardShadow: rgba(22, 23, 29, 0.08);
+
+  --color-tableBackground: #ffffff;
+  --color-tableRowBackgroundHover: #fbfbfa;
+  --color-tableText: var(--neo-ink);
+  --color-tableTextLight: #3f4654;
+  --color-tableTextSubdued: #a1a4ad;
+  --color-tableTextSelected: var(--neo-ink);
+  --color-tableTextHover: var(--neo-ink);
+  --color-tableTextInactive: #5b6270;
+  --color-tableHeaderText: #6b6f7a;
+  --color-tableBorder: #f0f0ed;
+  --color-tableBorderSelected: var(--neo-accent);
+  --color-tableBorderHover: #8fa3ee;
+  --color-tableBorderSeparator: #d6d6d1;
+  --color-tableRowBackgroundHighlight: #eef1fc;
+  --color-tableRowBackgroundHighlightText: var(--neo-ink);
+  --color-tableRowHeaderBackground: #fbfbfa;
+  --color-tableRowHeaderText: var(--neo-ink);
+
+  --color-numberPositive: #1f6f4a;
+  --color-numberNegative: #b3261e;
+
+  --color-sidebarBackground: #ffffff;
+  --color-sidebarItemBackgroundHover: #f1f1ee;
+  --color-sidebarItemAccentSelected: var(--neo-ink);
+  --color-sidebarItemText: #3d414c;
+  --color-sidebarItemTextSelected: var(--neo-ink);
+  --color-sidebarBudgetName: var(--neo-ink);
+  --color-sidebarHeaderText: var(--neo-ink);
+  --color-sidebarTextSubdued: #5b6270;
+  --color-sidebarTextMuted: #a1a4ad;
+  --color-sidebarBorder: #f0f0ed;
+  --color-sidebarControlBackground: #f1f1ee;
+  --color-sidebarBrand: var(--neo-accent);
+
+  --color-menuBackground: #ffffff;
+  --color-menuItemBackground: #fbfbfa;
+  --color-menuItemBackgroundHover: #f1f1ee;
+  --color-menuItemText: var(--neo-ink);
+  --color-menuItemTextSelected: var(--neo-accent);
+  --color-menuBorder: #e6e6e3;
+  --color-menuBorderHover: #c9cef3;
+
+  --color-modalBackground: #ffffff;
+  --color-modalBorder: #f0f0ed;
+  --color-mobileHeaderBackground: #ffffff;
+  --color-mobileHeaderText: var(--neo-ink);
+  --color-mobileHeaderTextSubdued: #5b6270;
+  --color-mobileHeaderTextHover: rgba(10, 12, 15, 0.06);
+  --color-mobilePageBackground: #fbfbfa;
+  --color-mobileNavBackground: #ffffff;
+  --color-mobileNavItem: #8a8f9a;
+  --color-mobileAccountShadow: #e6e6e3;
+  --color-mobileAccountText: var(--neo-ink);
+  --color-mobileNavItemSelected: var(--neo-accent);
+  --color-mobileTransactionSelected: var(--neo-accent);
+  --color-mobileViewTheme: #ffffff;
+  --color-mobileConfigServerViewTheme: var(--neo-accent);
+
+  --color-buttonPrimaryText: #ffffff;
+  --color-buttonPrimaryBackground: var(--neo-accent);
+  --color-buttonPrimaryBackgroundHover: var(--neo-accent-hover);
+  --color-buttonPrimaryShadow: rgba(22, 23, 29, 0.2);
+  --color-buttonPrimaryDisabledBackground: #c3c5cc;
+
+  --color-buttonNormalText: var(--neo-ink);
+  --color-buttonNormalBackground: #ffffff;
+  --color-buttonNormalBackgroundHover: #fbfbfa;
+  --color-buttonNormalBorder: #d9d9d5;
+  --color-buttonNormalShadow: rgba(22, 23, 29, 0.08);
+  --color-buttonNormalSelectedBackground: var(--neo-accent);
+
+  --color-formLabelText: var(--neo-accent);
+  --color-formInputBackground: #ffffff;
+  --color-formInputBorder: #d9d9d5;
+  --color-formInputBorderSelected: var(--neo-accent);
+  --color-formInputText: var(--neo-ink);
+  --color-formInputShadowSelected: #8fa3ee;
+  --color-checkboxBackgroundSelected: var(--neo-accent);
+  --color-checkboxBorderSelected: var(--neo-accent);
+  --color-checkboxToggleBackgroundSelected: var(--neo-accent);
+
+  --color-pillBackground: #f0f0ed;
+  --color-pillBackgroundLight: #fbfbfa;
+  --color-pillText: #3d414c;
+  --color-pillBorder: #f0f0ed;
+  --color-pillTextHighlighted: var(--neo-accent);
+  --color-pillBorderSelected: var(--neo-accent);
+
+  --color-budgetCurrentMonth: #ffffff;
+  --color-budgetOtherMonth: #fbfbfa;
+  --color-budgetHeaderCurrentMonth: #fbfbfa;
+  --color-budgetHeaderOtherMonth: #efefec;
+
+  --color-floatingActionBarBackground: var(--neo-accent);
+  --color-upcomingBackground: #e6ecfd;
+  --color-upcomingText: #2a38a0;
+  --color-upcomingBorder: var(--neo-accent);
+
+  --color-pageBackground: #fbfbfa;
+  --color-sidebarItemBackgroundSelected: #eeeeeb;
+  --color-sidebarBorder: #e6e6e3;
+  --color-tableHeaderBackground: #f4f4f1;
+  --color-budgetNumberNegative: #b3261e;
+  --color-reportsBlue: #2b4fd8;
+  --color-chartQual1: #2b4fd8;
+  --color-chartQual2: #1f8a5b;
+  --color-chartQual3: #d9822b;
+  --color-chartQual4: #c2453a;
+  --color-chartQual5: #7b5cd6;
+  --color-chartQual6: #2aa5b3;
+  --color-chartQual7: #9aa3b5;
+  --color-chartQual8: #d1b23a;
+  --color-chartQual9: #b0507f;
+}

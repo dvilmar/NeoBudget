@@ -65,13 +65,13 @@ function getBudgetTourSteps({ navigate, budgetType }: TourStepDeps): Step[] {
       id: 'welcome',
       target: 'body',
       placement: 'center',
-      title: <Trans>Welcome to {{ appName: 'Actual' }}!</Trans>,
+      title: <Trans>Welcome to {{ appName: 'NeoBudget' }}!</Trans>,
       content: (
         <Trans>
-          {{ appName: 'Actual' }} is a budgeting app that helps you understand
-          exactly where your money goes. This short tour walks you through the
-          basics. It only takes a couple of minutes, and you can leave at any
-          time and replay it later from the Help menu.
+          {{ appName: 'NeoBudget' }} is a budgeting app that helps you
+          understand exactly where your money goes. This short tour walks you
+          through the basics. It only takes a couple of minutes, and you can
+          leave at any time and replay it later from the Help menu.
         </Trans>
       ),
     },
@@ -110,9 +110,9 @@ function getBudgetTourSteps({ navigate, budgetType }: TourStepDeps): Step[] {
           </Trans>
         ) : (
           <Trans>
-            Categories in {{ appName: 'Actual' }} work like virtual envelopes:
-            you assign the money you already have to them, then spend from each
-            envelope. This approach is called{' '}
+            Categories in {{ appName: 'NeoBudget' }} work like virtual
+            envelopes: you assign the money you already have to them, then spend
+            from each envelope. This approach is called{' '}
             <Link
               variant="external"
               to="https://actualbudget.org/docs/getting-started/envelope-budgeting"
@@ -204,7 +204,7 @@ function getBudgetTourSteps({ navigate, budgetType }: TourStepDeps): Step[] {
       content: (
         <Trans>
           Transactions live in accounts, so adding your first account is the
-          best way to get started with {{ appName: 'Actual' }}. Click here to
+          best way to get started with {{ appName: 'NeoBudget' }}. Click here to
           add one. You can enter transactions yourself, or{' '}
           <Link
             variant="external"

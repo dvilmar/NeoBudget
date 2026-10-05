@@ -10,7 +10,6 @@ import {
 } from '@actual-app/components/icons/v2';
 import { Menu } from '@actual-app/components/menu';
 import { Popover } from '@actual-app/components/popover';
-import { styles } from '@actual-app/components/styles';
 import { theme } from '@actual-app/components/theme';
 import { View } from '@actual-app/components/view';
 
@@ -66,10 +65,10 @@ export const BudgetTotals = memo(function BudgetTotals({
         backgroundColor: theme.budgetCurrentMonth, //use budget colors, not generic table colors
         flexDirection: 'row',
         flexShrink: 0,
-        boxShadow: styles.cardShadow,
+        border: '1px solid ' + theme.cardBorder,
         marginLeft: 5,
         marginRight: 5 + getScrollbarWidth(),
-        borderRadius: '4px 4px 0 0',
+        borderRadius: '8px 8px 0 0',
         borderBottom: '1px solid ' + theme.tableBorder,
         '& .hover-visible': {
           opacity: 0,

@@ -147,9 +147,10 @@ export function Title({ text }: TitleProps) {
   return (
     <h1
       style={{
-        fontSize: 40,
-        fontWeight: 700,
-        color: theme.pageTextPositive,
+        fontSize: 28,
+        fontWeight: 600,
+        color: theme.pageText,
+        marginTop: 0,
         marginBottom: 20,
       }}
     >
@@ -157,3 +158,11 @@ export function Title({ text }: TitleProps) {
     </h1>
   );
 }
+
+export const authCardStyle = {
+  backgroundColor: theme.cardBackground,
+  border: '1px solid ' + theme.cardBorder,
+  borderRadius: 10,
+  padding: 32,
+  width: '100%',
+} as const;

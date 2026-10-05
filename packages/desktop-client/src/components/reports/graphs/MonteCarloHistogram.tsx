@@ -49,7 +49,7 @@ export function MonteCarloHistogram({
           data={data}
           margin={{ top: 15, right: 0, left: 20, bottom: 10 }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="3 3" stroke={theme.tableBorder} />
           <XAxis
             dataKey="age"
             tick={{ fill: theme.pageText }}

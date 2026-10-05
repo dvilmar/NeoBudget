@@ -16,18 +16,23 @@ import { aqlQuery } from './aql';
 import { app as authApp } from './auth/app';
 import { app as budgetApp } from './budget/app';
 import { app as budgetFilesApp } from './budgetfiles/app';
+import { app as currenciesApp } from './currencies/app';
 import { app as dashboardApp } from './dashboard/app';
 import * as db from './db';
+import { app as debtsApp } from './debts/app';
 import * as encryption from './encryption';
 import { app as encryptionApp } from './encryption/app';
 import { DocumentDirError, withErrorCode } from './errors';
+import { app as extrasApp } from './extras/app';
 import { app as filtersApp } from './filters/app';
 import { app as forecastApp } from './forecast/app';
 import { app as formulasApp } from './formulas/app';
+import { app as investmentsApp } from './investments/app';
 import { app } from './main-app';
 import { mutator, runHandler } from './mutators';
 import { app as notesApp } from './notes/app';
 import { app as payeesApp } from './payees/app';
+import { app as piggyBanksApp } from './piggy-banks/app';
 import { get } from './post';
 import { app as preferencesApp } from './preferences/app';
 import * as prefs from './prefs';
@@ -36,6 +41,7 @@ import { app as rulesApp } from './rules/app';
 import { app as schedulesApp } from './schedules/app';
 import { getServer, setServer } from './server-config';
 import { app as spreadsheetApp } from './spreadsheet/app';
+import { app as subscriptionsApp } from './subscriptions/app';
 import { fullSync, setSyncingMode } from './sync';
 import { app as syncApp } from './sync/app';
 import { app as tagsApp } from './tags/app';
@@ -146,6 +152,12 @@ app.combine(
   transactionsApp,
   accountsApp,
   accountGroupsApp,
+  investmentsApp,
+  piggyBanksApp,
+  debtsApp,
+  currenciesApp,
+  subscriptionsApp,
+  extrasApp,
   payeesApp,
   spreadsheetApp,
   syncApp,

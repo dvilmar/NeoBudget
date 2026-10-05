@@ -7,11 +7,14 @@ import type { AccountEntity } from '@actual-app/core/types/models';
 
 import { useMoveAccountMutation } from '#accounts';
 import { isAccountFailedSync } from '#accounts/syncStatus';
+import { useConversion } from '#components/currencies/useConversion';
+import { useAccountBalances } from '#hooks/useAccountBalances';
 import { useAccounts } from '#hooks/useAccounts';
 import { useClosedAccounts } from '#hooks/useClosedAccounts';
 import { useLocalPref } from '#hooks/useLocalPref';
 import { useOffBudgetAccounts } from '#hooks/useOffBudgetAccounts';
 import { useOnBudgetAccounts } from '#hooks/useOnBudgetAccounts';
+import { useSyncedPref } from '#hooks/useSyncedPref';
 import { useUpdatedAccounts } from '#hooks/useUpdatedAccounts';
 import { useSelector } from '#redux';
 import * as bindings from '#spreadsheet/bindings';
@@ -30,6 +33,30 @@ export function Accounts() {
   const { data: onBudgetAccounts = [] } = useOnBudgetAccounts();
   const { data: closedAccounts = [] } = useClosedAccounts();
   const syncingAccountIds = useSelector(state => state.account.accountsSyncing);
+
+  // Totals are converted to the budget currency when accounts use other currencies.
+  const [defaultCurrencyCode] = useSyncedPref('defaultCurrencyCode');
+  const conversion = useConversion(defaultCurrencyCode || 'EUR');
+  const balances = useAccountBalances(
+    accounts.filter(account => !account.closed).map(account => account.id),
+  );
+  function total(list: AccountEntity[]): number | null | undefined {
+    if (conversion.used.length === 0) {
+      return undefined;
+    }
+    let sum = 0;
+    for (const account of list) {
+      const converted = conversion.toBase(
+        account.id,
+        balances[account.id] ?? 0,
+      );
+      if (converted == null) {
+        return null;
+      }
+      sum += converted;
+    }
+    return Math.round(sum);
+  }
 
   const getAccountPath = (account: AccountEntity) => `/accounts/${account.id}`;
 
@@ -94,6 +121,7 @@ export function Accounts() {
           name={t('All accounts')}
           to="/accounts"
           query={bindings.allAccountBalance()}
+          convertedTotal={total([...onBudgetAccounts, ...offbudgetAccounts])}
           style={{ fontWeight, marginTop: 15 }}
           isExactPathMatch
           balanceTestId="sidebar-all-accounts-balance"
@@ -104,6 +132,7 @@ export function Accounts() {
             name={t('On budget')}
             to="/accounts/onbudget"
             query={bindings.onBudgetAccountBalance()}
+            convertedTotal={total(onBudgetAccounts)}
             style={{
               fontWeight,
               marginTop: 13,
@@ -136,6 +165,7 @@ export function Accounts() {
             name={t('Off budget')}
             to="/accounts/offbudget"
             query={bindings.offBudgetAccountBalance()}
+            convertedTotal={total(offbudgetAccounts)}
             style={{
               fontWeight,
               marginTop: 13,

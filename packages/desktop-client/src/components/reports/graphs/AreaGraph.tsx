@@ -63,8 +63,9 @@ const CustomTooltip = ({
         className={css({
           zIndex: 1000,
           pointerEvents: 'none',
-          borderRadius: 2,
-          boxShadow: '0 1px 6px rgba(0, 0, 0, .20)',
+          borderRadius: 6,
+          border: '1px solid ' + theme.cardBorder,
+          boxShadow: 'none',
           backgroundColor: theme.menuBackground,
           color: theme.menuItemText,
           padding: 10,
@@ -259,7 +260,11 @@ export function AreaGraph({
               }}
             >
               {compact ? null : (
-                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke={theme.tableBorder}
+                  vertical={false}
+                />
               )}
               {compact ? null : (
                 <XAxis

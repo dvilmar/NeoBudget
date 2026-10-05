@@ -15,7 +15,7 @@ import { useRefreshLoginMethods } from '#components/ServerContext';
 import { useNavigate } from '#hooks/useNavigate';
 import { useDispatch } from '#redux';
 
-import { Title, useBootstrapped } from './common';
+import { authCardStyle, Title, useBootstrapped } from './common';
 import { ConfirmPasswordForm } from './ConfirmPasswordForm';
 
 export function Bootstrap() {
@@ -67,12 +67,13 @@ export function Bootstrap() {
   }
 
   return (
-    <View style={{ maxWidth: 450 }}>
-      <Title text={t('Welcome to Actual!')} />
+    <View style={{ ...authCardStyle, maxWidth: 450, color: theme.pageText }}>
+      <Title text={t('Welcome to NeoBudget!')} />
       <Paragraph style={{ fontSize: 16, color: theme.pageTextDark }}>
         <Trans>
-          Actual is a super fast privacy-focused app for managing your finances.
-          To secure your data, you'll need to set a password for your server.
+          NeoBudget is a super fast privacy-focused app for managing your
+          finances. To secure your data, you'll need to set a password for your
+          server.
         </Trans>
       </Paragraph>
 

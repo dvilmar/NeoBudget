@@ -297,12 +297,11 @@ export const ManagePayees = ({
               style={{
                 textAlign: 'center',
                 color: theme.pageTextSubdued,
-                fontStyle: 'italic',
                 fontSize: 13,
-                marginTop: 5,
+                padding: '40px 20px',
               }}
             >
-              <Trans>No payees</Trans>
+              <Trans>No payees found.</Trans>
             </View>
           ) : (
             <PayeeTable

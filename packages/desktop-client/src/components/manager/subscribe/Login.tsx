@@ -27,7 +27,7 @@ import { useNavigate } from '#hooks/useNavigate';
 import { useDispatch } from '#redux';
 import { loggedIn } from '#users/usersSlice';
 
-import { Title, useBootstrapped } from './common';
+import { authCardStyle, Title, useBootstrapped } from './common';
 import { OpenIdForm } from './OpenIdForm';
 
 function PasswordLogin({ setError, dispatch }) {
@@ -355,8 +355,8 @@ export function Login() {
   }
 
   return (
-    <View style={{ maxWidth: 450, marginTop: -30, color: theme.pageText }}>
-      <Title text={t('Sign in to this Actual instance')} />
+    <View style={{ ...authCardStyle, maxWidth: 450, color: theme.pageText }}>
+      <Title text={t('Sign in to this NeoBudget instance')} />
 
       {loginMethods?.length > 1 && (
         <Text

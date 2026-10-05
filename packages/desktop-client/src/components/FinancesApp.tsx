@@ -18,33 +18,44 @@ import { useMetaThemeColor } from '#hooks/useMetaThemeColor';
 import { useNavigate } from '#hooks/useNavigate';
 import { useNewsNotification } from '#hooks/useNewsNotification';
 import { ScrollProvider } from '#hooks/useScrollListener';
+import { useSyncedPref } from '#hooks/useSyncedPref';
 import { addNotification } from '#notifications/notificationsSlice';
 import { useDispatch, useSelector } from '#redux';
 
+import { Activity } from './activity';
 import { UserAccessPage } from './admin/UserAccess/UserAccessPage';
 import { UserDirectoryPage } from './admin/UserDirectory/UserDirectoryPage';
 import { BankSyncStatus } from './BankSyncStatus';
 import { CommandBar } from './CommandBar';
 import { ContextMenu } from './ContextMenu';
+import { Currencies } from './currencies';
+import { Debts } from './debts';
 import { EnableBankingCallback } from './EnableBankingCallback';
 import { FeatureErrorFallback } from './FeatureErrorFallback';
 import { GlobalKeys } from './GlobalKeys';
+import { Insights } from './insights';
+import { Investments } from './investments';
 import { MobileBankSyncAccountEditPage } from './mobile/banksync/MobileBankSyncAccountEditPage';
 import { MobileNavTabs } from './mobile/MobileNavTabs';
 import { TransactionEdit } from './mobile/transactions/TransactionEdit';
+import { NeoBudget } from './neobudget';
 import { NotificationsPage } from './news/NotificationsPage';
 import { Notifications } from './Notifications';
+import { Overview } from './overview';
 import { MobilePageHeaderProvider, MobilePageHeaderSlot } from './Page';
+import { PiggyBanks } from './piggy-banks';
 import { Reports } from './reports';
 import { NarrowAlternate, WideComponent } from './responsive';
 import { useMultiuserEnabled } from './ServerContext';
 import { Settings } from './settings';
 import { FloatableSidebar } from './sidebar';
+import { Subscriptions } from './subscriptions';
 import { ManageTagsPage } from './tags/ManageTagsPage';
 import { Titlebar } from './Titlebar';
 import { Tour } from './tour/Tour';
 import { TourAutoOffer } from './tour/TourAutoOffer';
 import { TourProvider } from './tour/TourProvider';
+import { Webhooks } from './webhooks';
 
 function NarrowNotSupported({
   redirectTo = '/budget',
@@ -92,6 +103,7 @@ function RouterBehaviors() {
 
 export function FinancesApp() {
   const { isNarrowWidth } = useResponsive();
+  const [budgetType = 'envelope'] = useSyncedPref('budgetType');
   useMetaThemeColor(theme.mobileViewTheme);
 
   const location = useLocation();
@@ -254,13 +266,29 @@ export function FinancesApp() {
                   <Routes>
                     <Route
                       path="/"
-                      element={<Navigate to="/budget" replace />}
+                      element={<Navigate to="/overview" replace />}
                     />
 
                     <Route path="/reports/*" element={<Reports />} />
 
                     <Route
                       path="/budget"
+                      element={
+                        <ErrorBoundary
+                          FallbackComponent={FeatureErrorFallback}
+                          resetKeys={[location.pathname]}
+                        >
+                          {isNarrowWidth || budgetType === 'tracking' ? (
+                            <NarrowAlternate name="Budget" />
+                          ) : (
+                            <NeoBudget />
+                          )}
+                        </ErrorBoundary>
+                      }
+                    />
+
+                    <Route
+                      path="/budget-classic"
                       element={
                         <ErrorBoundary
                           FallbackComponent={FeatureErrorFallback}
@@ -367,6 +395,15 @@ export function FinancesApp() {
                       }
                     />
                     <Route path="/tags" element={<ManageTagsPage />} />
+                    <Route path="/investments" element={<Investments />} />
+                    <Route path="/overview" element={<Overview />} />
+                    <Route path="/piggy-banks" element={<PiggyBanks />} />
+                    <Route path="/debts" element={<Debts />} />
+                    <Route path="/insights" element={<Insights />} />
+                    <Route path="/activity" element={<Activity />} />
+                    <Route path="/webhooks" element={<Webhooks />} />
+                    <Route path="/subscriptions" element={<Subscriptions />} />
+                    <Route path="/currencies" element={<Currencies />} />
                     <Route
                       path="/notifications"
                       element={<NotificationsPage />}

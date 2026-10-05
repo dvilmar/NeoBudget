@@ -113,11 +113,6 @@ const _getActiveStyles = (
     default:
       return {
         transform: bounce ? 'translateY(1px)' : undefined,
-        boxShadow: `0 1px 4px 0 ${
-          variant === 'primary'
-            ? theme.buttonPrimaryShadow
-            : theme.buttonNormalShadow
-        }`,
         transition: 'none',
       };
   }
@@ -148,7 +143,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           margin: 0,
           overflow: 'hidden',
           display: 'flex',
-          borderRadius: 4,
+          borderRadius: 6,
           backgroundColor: backgroundColor[variantWithDisabled],
           border: _getBorder(variant, variantWithDisabled),
           color: textColor[variantWithDisabled],

@@ -10,14 +10,19 @@ import { bootstrap } from './account-db';
 import * as accountApp from './app-account';
 import * as adminApp from './app-admin';
 import * as akahuApp from './app-akahu/app-akahu.js';
+import * as attachmentsApp from './app-attachments/app-attachments';
+import * as brokersApp from './app-brokers/app-brokers';
 import * as corsApp from './app-cors-proxy';
 import * as enableBankingApp from './app-enablebanking/app-enablebanking';
 import * as goCardlessApp from './app-gocardless/app-gocardless';
 import * as openidApp from './app-openid';
 import * as pluggai from './app-pluggyai/app-pluggyai';
+import * as pricesApp from './app-prices/app-prices';
+import { startRefreshJob } from './app-prices/refresh-job';
 import * as secretApp from './app-secrets';
 import * as simpleFinApp from './app-simplefin/app-simplefin';
 import * as syncApp from './app-sync';
+import * as webhooksApp from './app-webhooks/app-webhooks';
 import { config } from './load-config';
 
 const app = express();
@@ -63,6 +68,10 @@ app.use('/simplefin', simpleFinApp.handlers);
 app.use('/pluggyai', pluggai.handlers);
 app.use('/akahu', akahuApp.handlers);
 app.use('/enablebanking', enableBankingApp.handlers);
+app.use('/prices', pricesApp.handlers);
+app.use('/brokers', brokersApp.handlers);
+app.use('/attachments', attachmentsApp.handlers);
+app.use('/webhooks', webhooksApp.handlers);
 app.use('/secret', secretApp.handlers);
 
 if (config.get('corsProxy.enabled')) {
@@ -198,6 +207,9 @@ export async function run() {
   const portVal = config.get('port');
   const port = typeof portVal === 'string' ? parseInt(portVal) : portVal;
   const hostname = config.get('hostname');
+  if (startRefreshJob()) {
+    console.log('Scheduled price refresh enabled');
+  }
   const openIdConfig = config?.getProperties()?.openId;
   if (
     openIdConfig?.discoveryURL ||

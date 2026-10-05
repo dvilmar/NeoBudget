@@ -4,18 +4,24 @@ import type { AdminHandlers } from '#server/admin/app';
 import type { AuthHandlers } from '#server/auth/app';
 import type { BudgetHandlers } from '#server/budget/app';
 import type { BudgetFileHandlers } from '#server/budgetfiles/app';
+import type { CurrenciesHandlers } from '#server/currencies/app';
 import type { DashboardHandlers } from '#server/dashboard/app';
+import type { DebtsHandlers } from '#server/debts/app';
 import type { EncryptionHandlers } from '#server/encryption/app';
+import type { ExtrasHandlers } from '#server/extras/app';
 import type { FiltersHandlers } from '#server/filters/app';
 import type { ForecastHandlers } from '#server/forecast/app';
 import type { FormulasHandlers } from '#server/formulas/app';
+import type { InvestmentsHandlers } from '#server/investments/app';
 import type { NotesHandlers } from '#server/notes/app';
 import type { PayeesHandlers } from '#server/payees/app';
+import type { PiggyBanksHandlers } from '#server/piggy-banks/app';
 import type { PreferencesHandlers } from '#server/preferences/app';
 import type { ReportsHandlers } from '#server/reports/app';
 import type { RulesHandlers } from '#server/rules/app';
 import type { SchedulesHandlers } from '#server/schedules/app';
 import type { SpreadsheetHandlers } from '#server/spreadsheet/app';
+import type { SubscriptionsHandlers } from '#server/subscriptions/app';
 import type { SyncHandlers } from '#server/sync/app';
 import type { TagsHandlers } from '#server/tags/app';
 import type { ToolsHandlers } from '#server/tools/app';
@@ -41,6 +47,12 @@ export type Handlers = {} & ServerHandlers &
   ToolsHandlers &
   AccountHandlers &
   AccountGroupsHandlers &
+  InvestmentsHandlers &
+  PiggyBanksHandlers &
+  DebtsHandlers &
+  CurrenciesHandlers &
+  SubscriptionsHandlers &
+  ExtrasHandlers &
   PayeesHandlers &
   SpreadsheetHandlers &
   SyncHandlers &

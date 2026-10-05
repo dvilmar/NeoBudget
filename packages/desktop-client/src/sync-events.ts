@@ -134,6 +134,44 @@ export function listenForSyncEvent(store: AppStore, queryClient: QueryClient) {
         });
       }
 
+      if (
+        tables.includes('investment_assets') ||
+        tables.includes('investment_trades')
+      ) {
+        void queryClient.invalidateQueries({ queryKey: ['investments'] });
+      }
+
+      if (
+        tables.includes('piggy_banks') ||
+        tables.includes('piggy_bank_events')
+      ) {
+        void queryClient.invalidateQueries({ queryKey: ['piggy-banks'] });
+      }
+
+      if (tables.includes('debts') || tables.includes('debt_payments')) {
+        void queryClient.invalidateQueries({ queryKey: ['debts'] });
+      }
+
+      if (tables.includes('transactions')) {
+        scheduleTransactionsWebhook();
+      }
+
+      if (
+        tables.includes('transaction_fx') ||
+        tables.includes('transaction_links') ||
+        tables.includes('transaction_attachments')
+      ) {
+        void queryClient.invalidateQueries({ queryKey: ['tx-extras-summary'] });
+      }
+
+      if (tables.includes('account_currencies')) {
+        void queryClient.invalidateQueries({ queryKey: ['currencies'] });
+      }
+
+      if (tables.includes('subscriptions')) {
+        void queryClient.invalidateQueries({ queryKey: ['subscriptions'] });
+      }
+
       if (tables.includes('account_groups')) {
         void queryClient.invalidateQueries({
           queryKey: accountGroupQueries.lists(),
@@ -437,4 +475,20 @@ export function listenForSyncEvent(store: AppStore, queryClient: QueryClient) {
     unlistenUnauthorized();
     unlistenSuccess();
   };
+}
+
+// Debounced notification to the sync server webhooks; fails quietly without a server.
+let webhookTimer: ReturnType<typeof setTimeout> | null = null;
+function scheduleTransactionsWebhook() {
+  if (webhookTimer) {
+    return;
+  }
+  webhookTimer = setTimeout(() => {
+    webhookTimer = null;
+    void send('get-server-url')
+      .then(url =>
+        url ? send('webhooks-fire', { event: 'transactions-changed' }) : null,
+      )
+      .catch(() => undefined);
+  }, 5000);
 }

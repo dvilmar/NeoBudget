@@ -19,6 +19,8 @@ export const SecretName = {
   akahu_appToken: 'akahu_appToken',
   enablebanking_applicationId: 'enablebanking_applicationId',
   enablebanking_secretKey: 'enablebanking_secretKey',
+  ibkr_flexToken: 'ibkr_flexToken',
+  ibkr_flexQueryId: 'ibkr_flexQueryId',
 };
 
 function getSecretKey(name, fileId) {

@@ -3,6 +3,8 @@ import { useEffect, useMemo } from 'react';
 import darkThemeCss from '@actual-app/components/themes/dark.css?inline';
 import lightThemeCss from '@actual-app/components/themes/light.css?inline';
 import midnightThemeCss from '@actual-app/components/themes/midnight.css?inline';
+import neobudgetDarkCss from '@actual-app/components/themes/neobudget-dark.css?inline';
+import neobudgetLightCss from '@actual-app/components/themes/neobudget-light.css?inline';
 import paletteCss from '@actual-app/components/themes/palette.css?inline';
 import sidebarRedesignLightCss from '@actual-app/components/themes/sidebar-redesign-light.css?inline';
 import type { DarkTheme, Theme } from '@actual-app/core/types/prefs';
@@ -18,8 +20,8 @@ import {
 } from './customThemes';
 
 const themes = {
-  light: { name: 'Light', colors: lightThemeCss },
-  dark: { name: 'Dark', colors: darkThemeCss },
+  light: { name: 'Light', colors: lightThemeCss + neobudgetLightCss },
+  dark: { name: 'Dark', colors: darkThemeCss + neobudgetDarkCss },
   midnight: { name: 'Midnight', colors: midnightThemeCss },
   auto: { name: 'System default' },
 } as const;

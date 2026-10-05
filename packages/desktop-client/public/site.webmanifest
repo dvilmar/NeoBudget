@@ -1,6 +1,6 @@
 {
-  "name": "Actual",
-  "short_name": "Actual",
+  "name": "NeoBudget",
+  "short_name": "NeoBudget",
   "description": "A local-first personal finance tool",
   "icons": [
     {

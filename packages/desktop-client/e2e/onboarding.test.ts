@@ -24,7 +24,7 @@ test.describe('Onboarding', () => {
   });
 
   test('checks the page visuals', async () => {
-    await expect(page.getByText('Welcome to Actual')).toBeVisible();
+    await expect(page.getByText('Welcome to NeoBudget')).toBeVisible();
     await expect(page).toMatchThemeScreenshots();
 
     await configurationPage.clickOnConnectServer();

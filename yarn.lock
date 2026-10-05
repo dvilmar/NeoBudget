@@ -244,6 +244,8 @@ __metadata:
     "@codemirror/view": "npm:^6.43.6"
     "@emotion/css": "npm:^11.13.5"
     "@fontsource-variable/inter": "npm:^5.2.8"
+    "@fontsource/geist": "npm:^5.3.0"
+    "@fontsource/geist-mono": "npm:^5.3.0"
     "@fontsource/redacted-script": "npm:^5.2.8"
     "@internationalized/date": "npm:^3.12.2"
     "@lezer/highlight": "npm:^1.2.3"
@@ -4509,6 +4511,20 @@ __metadata:
   version: 5.2.8
   resolution: "@fontsource-variable/inter@npm:5.2.8"
   checksum: 10/7f45ab415f0d3c43f31129dd9972dcbfb60ebe51801891b9a88a7ba395d4be664c507b0027138f42307b9ffe91bdd564fcae98bce5b244046274f4aceae07382
+  languageName: node
+  linkType: hard
+
+"@fontsource/geist-mono@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource/geist-mono@npm:5.3.0"
+  checksum: 10/30f904359589730e3de3bfac941dfa5030ce31e602142189a13fac602426300a5688ef88cb1463d92b5bf72cd18f07e0fa68d067319779d8dc99db1da9e815d4
+  languageName: node
+  linkType: hard
+
+"@fontsource/geist@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource/geist@npm:5.3.0"
+  checksum: 10/02a93d54c110bacbef2ac8bc6d222949831e63d1f88f76b5c63f6144d3d9cc58a5d24baac278c17d21659144567dd9ce3545822da548468aaf7037150ba9ae9e
   languageName: node
   linkType: hard
 

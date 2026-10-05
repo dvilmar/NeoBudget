@@ -44,7 +44,7 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
         flexDirection: 'row',
         alignItems: 'center',
         whiteSpace: 'nowrap',
-        marginLeft: 20,
+        marginLeft: 32,
         gap: 3,
         '& .hover-visible': {
           opacity: 0,
@@ -63,8 +63,9 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
     >
       <View
         style={{
-          fontSize: 25,
-          fontWeight: 500,
+          fontSize: 28,
+          fontWeight: 600,
+          letterSpacing: -0.4,
           flexGrow: 0,
           flexShrink: 0,
           flexBasis: 'auto',
@@ -80,8 +81,8 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
             onUpdate={handleSaveName}
             onEscape={() => setEditingName(false)}
             style={{
-              fontSize: 25,
-              fontWeight: 500,
+              fontSize: 28,
+              fontWeight: 600,
               marginTop: -3,
               marginBottom: -4,
               paddingTop: 2,
@@ -93,8 +94,8 @@ export function DashboardHeader({ dashboard }: DashboardHeaderProps) {
         <>
           <View
             style={{
-              fontSize: 25,
-              fontWeight: 500,
+              fontSize: 28,
+              fontWeight: 600,
               marginRight: 5,
               flexGrow: 0,
               flexShrink: 1,

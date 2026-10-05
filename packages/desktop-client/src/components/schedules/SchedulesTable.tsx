@@ -17,6 +17,7 @@ import type { ScheduleStatuses } from '@actual-app/core/shared/schedules';
 import type { ScheduleEntity } from '@actual-app/core/types/models';
 
 import { FinancialText } from '#components/FinancialText';
+import { monoFont } from '#components/overview/monoFont';
 import { PrivacyFilter } from '#components/PrivacyFilter';
 import { Cell, Field, Row, Table, TableHeader } from '#components/table';
 import { DisplayId } from '#components/util/DisplayId';
@@ -99,6 +100,7 @@ export function ScheduleAmountCell({
         flexDirection: 'row',
         alignItems: 'center',
         padding: '0 5px',
+        fontFamily: monoFont,
       }}
       name="amount"
     >

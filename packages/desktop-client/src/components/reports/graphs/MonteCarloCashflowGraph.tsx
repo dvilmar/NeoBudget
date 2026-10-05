@@ -96,7 +96,11 @@ export function MonteCarloCashflowGraph({
               bottom: 10,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke={theme.tableBorder}
+              vertical={false}
+            />
             <XAxis
               dataKey="age"
               tick={{ fill: theme.pageText }}

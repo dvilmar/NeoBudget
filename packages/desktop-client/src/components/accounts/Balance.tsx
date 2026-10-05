@@ -15,6 +15,8 @@ import type { AccountEntity } from '@actual-app/core/types/models';
 import { useHover } from 'usehooks-ts';
 
 import { FinancialText } from '#components/FinancialText';
+import { border } from '#components/overview/border';
+import { monoFont } from '#components/overview/monoFont';
 import { PrivacyFilter } from '#components/PrivacyFilter';
 import { CellValue, CellValueText } from '#components/spreadsheet/CellValue';
 import { useCachedSchedules } from '#hooks/useCachedSchedules';
@@ -38,15 +40,22 @@ function DetailedBalance({
   return (
     <Text
       style={{
-        borderRadius: 4,
-        padding: '4px 6px',
-        color: theme.pillText,
-        backgroundColor: theme.pillBackground,
+        borderRadius: 6,
+        padding: '6px 10px',
+        fontSize: 13,
+        color: theme.pageTextSubdued,
+        border,
       }}
     >
       {name}{' '}
       <PrivacyFilter>
-        <FinancialText style={{ fontWeight: 600 }}>
+        <FinancialText
+          style={{
+            fontWeight: 500,
+            fontFamily: monoFont,
+            color: theme.pageText,
+          }}
+        >
           {!isExactBalance && '~ '}
           {format(balance, 'financial')}
         </FinancialText>
@@ -202,8 +211,10 @@ export function Balances({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
-        marginTop: -5,
-        marginLeft: -5,
+        padding: '10px 14px',
+        border,
+        borderRadius: 8,
+        backgroundColor: theme.cardBackground,
         gap: 10,
       }}
     >
@@ -213,8 +224,8 @@ export function Balances({
         variant="bare"
         onPress={onToggleExtraBalances}
         style={{
-          paddingTop: 1,
-          paddingBottom: 1,
+          paddingTop: 4,
+          paddingBottom: 4,
         }}
       >
         <CellValue
@@ -230,8 +241,9 @@ export function Balances({
             <CellValueText
               {...props}
               style={{
-                fontSize: 22,
-                fontWeight: 400,
+                fontSize: 24,
+                fontWeight: 500,
+                fontFamily: monoFont,
                 color:
                   props.value < 0
                     ? theme.numberNegative

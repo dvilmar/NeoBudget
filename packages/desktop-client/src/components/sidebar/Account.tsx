@@ -17,12 +17,15 @@ import { Text } from '@actual-app/components/text';
 import { theme } from '@actual-app/components/theme';
 import { Tooltip } from '@actual-app/components/tooltip';
 import { View } from '@actual-app/components/view';
+import { integerToCurrency } from '@actual-app/core/shared/util';
 import type { AccountEntity } from '@actual-app/core/types/models';
 import { css, cx } from '@emotion/css';
 
 import { useReopenAccountMutation, useUpdateAccountMutation } from '#accounts';
 import { BalanceHistoryGraph } from '#components/accounts/BalanceHistoryGraph';
 import { Link } from '#components/common/Link';
+import { useAccountCurrency } from '#components/currencies/useAccountCurrency';
+import { FinancialText } from '#components/FinancialText';
 import { Notes } from '#components/Notes';
 import { DropHighlight, useDraggable, useDroppable } from '#components/sort';
 import type { OnDragChangeCallback, OnDropCallback } from '#components/sort';
@@ -66,6 +69,8 @@ type AccountProps<FieldName extends SheetFields<'account'>> = {
   titleAccount?: boolean;
   isExactPathMatch?: boolean;
   balanceTestId?: string;
+  // Total already converted to the budget currency (integer cents); shown instead of `query` balance.
+  convertedTotal?: number | null;
 };
 
 export function Account<FieldName extends SheetFields<'account'>>({
@@ -84,6 +89,7 @@ export function Account<FieldName extends SheetFields<'account'>>({
   titleAccount,
   isExactPathMatch,
   balanceTestId,
+  convertedTotal,
 }: AccountProps<FieldName>) {
   const isTestEnv = useIsTestEnv();
   const { t } = useTranslation();
@@ -121,10 +127,18 @@ export function Account<FieldName extends SheetFields<'account'>>({
 
   const accountNote = useNotes(`account-${account?.id}`);
   const needsTooltip = !!account?.id && !isTouchDevice();
+  const currencyCode = useAccountCurrency(account?.id);
   const reopenAccount = useReopenAccountMutation();
   const updateAccount = useUpdateAccountMutation();
 
-  const balanceCell = <CellValue binding={query} type="financial" />;
+  const balanceCell =
+    convertedTotal === undefined ? (
+      <CellValue binding={query} type="financial" />
+    ) : (
+      <FinancialText>
+        {convertedTotal === null ? '—' : integerToCurrency(convertedTotal)}
+      </FinancialText>
+    );
 
   const isContextMenuOpen = useSelector(state =>
     state.contextMenu.items.some(
@@ -225,7 +239,8 @@ export function Account<FieldName extends SheetFields<'account'>>({
             <AlignedText
               style={
                 titleAccount && {
-                  borderBottom: `1.5px solid rgba(255,255,255,0.4)`,
+                  fontSize: 12,
+                  color: theme.sidebarTextSubdued,
                   paddingBottom: '3px',
                 }
               }
@@ -254,7 +269,20 @@ export function Account<FieldName extends SheetFields<'account'>>({
                     />
                   </InitialFocus>
                 ) : (
-                  name
+                  <>
+                    {name}
+                    {currencyCode && (
+                      <span
+                        style={{
+                          marginLeft: 6,
+                          fontSize: 10,
+                          opacity: 0.7,
+                        }}
+                      >
+                        {currencyCode}
+                      </span>
+                    )}
+                  </>
                 )
               }
               right={

@@ -23,6 +23,7 @@ export function FilterMenu({
         !filterId?.id
           ? [
               { name: 'save-filter', text: t('Save new filter') },
+              { name: 'create-rule', text: t('Create rule from conditions') },
               { name: 'clear-filter', text: t('Clear all conditions') },
             ]
           : filterId?.id !== null && filterId?.status === 'saved'
@@ -35,6 +36,7 @@ export function FilterMenu({
                   text: t('Save new filter'),
                   disabled: true,
                 },
+                { name: 'create-rule', text: t('Create rule from conditions') },
                 { name: 'clear-filter', text: t('Clear all conditions') },
               ]
             : [
@@ -44,6 +46,7 @@ export function FilterMenu({
                 { name: 'delete-filter', text: t('Delete') },
                 Menu.line,
                 { name: 'save-filter', text: t('Save new filter') },
+                { name: 'create-rule', text: t('Create rule from conditions') },
                 { name: 'clear-filter', text: t('Clear all conditions') },
               ]
       }

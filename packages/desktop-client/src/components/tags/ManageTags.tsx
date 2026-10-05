@@ -101,11 +101,11 @@ export function ManageTags() {
             <View
               style={{
                 background: theme.tableBackground,
-                fontStyle: 'italic',
+                color: theme.pageTextSubdued,
               }}
             >
-              <Text style={{ margin: 'auto', padding: '20px' }}>
-                <Trans>No Tags</Trans>
+              <Text style={{ margin: 'auto', padding: '40px 20px' }}>
+                <Trans>No tags yet. Use Add New to create one.</Trans>
               </Text>
             </View>
           )}

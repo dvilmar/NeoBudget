@@ -10,7 +10,7 @@ import { send } from '@actual-app/core/platform/client/connection';
 
 import { useNavigate } from '#hooks/useNavigate';
 
-import { Title } from './common';
+import { authCardStyle, Title } from './common';
 import { ConfirmPasswordForm } from './ConfirmPasswordForm';
 
 export function ChangePassword() {
@@ -47,7 +47,7 @@ export function ChangePassword() {
   }
 
   return (
-    <View style={{ maxWidth: 500, marginTop: -30 }}>
+    <View style={{ ...authCardStyle, maxWidth: 500, color: theme.pageText }}>
       <Title text={t('Change server password')} />
       <Text
         style={{

@@ -752,7 +752,7 @@ export function Overview({ dashboard }: OverviewProps) {
           </View>
         )
       }
-      padding={10}
+      padding={isNarrowWidth ? 10 : 32}
     >
       {isImporting ? (
         <LoadingIndicator message={t('Import is running...')} />

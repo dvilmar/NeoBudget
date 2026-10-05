@@ -87,6 +87,7 @@ import { CategoryAutocomplete } from '#components/autocomplete/CategoryAutocompl
 import { PayeeAutocomplete } from '#components/autocomplete/PayeeAutocomplete';
 import { TagAutocomplete } from '#components/autocomplete/TagAutocomplete';
 import { TransferDirectionIcon } from '#components/common/TransferDirectionIcon';
+import { monoFont } from '#components/overview/monoFont';
 import { getStatusProps } from '#components/schedules/StatusBadge';
 import type { StatusTypes } from '#components/schedules/StatusBadge';
 import { DateSelect } from '#components/select/DateSelect';
@@ -147,6 +148,7 @@ import {
   isFutureTransaction,
 } from '#util/schedule-actions';
 
+import { ExtrasCell } from './extras/ExtrasCell';
 import {
   isTransactionTableColumnAvailableInChildRows,
   isTransactionTableColumnDisplayOnly,
@@ -324,6 +326,12 @@ const TransactionHeader = memo(
         width: amountColumnWidths.balance,
         alignItems: 'flex-end',
         marginRight: -5,
+      },
+      extras: {
+        value: columnLabels.extras,
+        width: 130,
+        alignItems: 'flex',
+        marginLeft: -5,
       },
       cleared: {
         value: '✓',
@@ -1985,6 +1993,7 @@ const Transaction = memo(function Transaction({
             style={{
               ...(isParent && { fontStyle: 'italic' }),
               ...styles.tnum,
+              fontFamily: monoFont,
               ...amountStyle,
             }}
             inputProps={{
@@ -2020,6 +2029,7 @@ const Transaction = memo(function Transaction({
             style={{
               ...(isParent && { fontStyle: 'italic' }),
               ...styles.tnum,
+              fontFamily: monoFont,
               ...amountStyle,
             }}
             inputProps={{
@@ -2030,6 +2040,13 @@ const Transaction = memo(function Transaction({
             privacyFilter={{
               activationFilters: [!isTemporaryId(transaction.id)],
             }}
+          />
+        );
+      case 'extras':
+        return (
+          <ExtrasCell
+            key={columnId}
+            transactionId={isChild || isTemporaryId(id) ? null : id}
           />
         );
       case 'balance':
@@ -2049,7 +2066,7 @@ const Transaction = memo(function Transaction({
                   ? theme.numberNegative
                   : theme.numberPositive,
             }}
-            style={{ ...styles.tnum, ...amountStyle }}
+            style={{ ...styles.tnum, fontFamily: monoFont, ...amountStyle }}
             width={amountColumnWidths.balance}
             textAlign="right"
             privacyFilter
