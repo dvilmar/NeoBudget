@@ -1,44 +1,54 @@
 # NeoBudget
 
-Una sola app para el dinero de todos los días y para las inversiones: presupuesto por sobres, multidivisa, deudas, huchas, suscripciones y cartera de inversión, con tus datos en tu propio servidor.
+**Presupuesto, deudas y inversiones en una sola app, con tus datos en tu propio servidor.**
 
-NeoBudget es un fork de [Actual Budget](https://github.com/actualbudget/actual) (licencia MIT) al que se le han añadido ideas de [Firefly III](https://www.firefly-iii.org/) (multidivisa, deudas, huchas, suscripciones, webhooks) y de [Ghostfolio](https://ghostfol.io/) (inversiones y rentabilidad). Todo está reimplementado sobre la base de Actual; no se ha copiado código de proyectos AGPL.
+![Licencia MIT](https://img.shields.io/badge/licencia-MIT-green)
+![Node 22+](https://img.shields.io/badge/node-%3E%3D22-blue)
+![Estado: en desarrollo](https://img.shields.io/badge/estado-en%20desarrollo-orange)
 
-> Estado: proyecto personal en desarrollo. Una parte de las integraciones con brokers todavía no se ha probado con cuentas reales (ver [Integraciones](#integraciones)).
+NeoBudget es un fork de [Actual Budget](https://github.com/actualbudget/actual) que le suma lo que echaba en falta: multidivisa, deudas, huchas y suscripciones al estilo de [Firefly III](https://www.firefly-iii.org/), y seguimiento de inversiones al estilo de [Ghostfolio](https://ghostfol.io/). Todo está reimplementado sobre la base de Actual; no se ha copiado código de proyectos AGPL.
+
+- [Qué incluye](#qué-incluye)
+- [Integraciones](#integraciones)
+- [Empezar](#empezar)
+- [Despliegue en tu servidor](#despliegue-en-tu-servidor)
+- [Arquitectura](#arquitectura)
+- [Seguridad y privacidad](#seguridad-y-privacidad)
+- [Estado y hoja de ruta](#estado-y-hoja-de-ruta)
+- [Contribuir](#contribuir)
+- [Créditos y licencia](#créditos-y-licencia)
 
 ## Qué incluye
 
-**Presupuesto** (heredado de Actual)
+**Heredado de Actual Budget:** presupuesto por sobres, cuentas, transacciones, reglas, calendario de pagos, informes y sincronización entre dispositivos con servidor propio.
 
-- Presupuesto por sobres, cuentas, transacciones, reglas, calendario de pagos e informes.
-- Sincronización entre dispositivos con servidor propio (SQLite, cifrado opcional de extremo a extremo).
+**Añadido por NeoBudget:**
 
-**Lo que añade NeoBudget**
+| Área              | Qué hace                                                                                                                                                                                                                                                                            |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Resumen**       | Patrimonio neto, dinero por asignar, inversión, gasto restante por día, próximos pagos, huchas y mayores gastos del mes.                                                                                                                                                            |
+| **Inversiones**   | Posiciones con coste medio o FIFO, valor y ganancia, rentabilidad ponderada en el tiempo con benchmark, dividendos y su calendario, reparto de la cartera, análisis de riesgo (X-Ray), calculadora FIRE y fondo de emergencia, lista de seguimiento, importación y exportación CSV. |
+| **Multidivisa**   | Divisa por cuenta, tipos de cambio, totales convertidos a tu divisa base e importe en divisa extranjera por transacción con sugerencia al tipo del día.                                                                                                                             |
+| **Deudas**        | Préstamos e hipotecas con pagos, intereses, saldo pendiente y tabla de amortización.                                                                                                                                                                                                |
+| **Huchas**        | Objetivos de ahorro con movimientos vinculados a transacciones reales.                                                                                                                                                                                                              |
+| **Suscripciones** | Coste mensual y anual a partir de tus pagos programados.                                                                                                                                                                                                                            |
+| **Extras**        | Enlaces entre transacciones, adjuntos, registro de actividad y webhooks.                                                                                                                                                                                                            |
+| **Insights**      | Ingresos y gastos por periodo, tasa de ahorro y comparación con el mismo mes del año anterior.                                                                                                                                                                                      |
+| **Diseño**        | Tema claro y tema oscuro propios, con la tipografía Geist.                                                                                                                                                                                                                          |
 
-- **Resumen**: patrimonio neto, dinero por asignar, inversión, gasto restante por día, próximos pagos, huchas y mayores gastos del mes.
-- **Inversiones**: posiciones con coste medio o FIFO, valor de mercado y ganancia, rentabilidad ponderada en el tiempo (sin que los ingresos de dinero la distorsionen) con comparación frente a un benchmark, dividendos y su calendario, reparto de la cartera, análisis de riesgo (X-Ray), calculadora FIRE con fondo de emergencia, lista de seguimiento, edición de activos y operaciones, importación de CSV y exportación a CSV.
-- **Multidivisa**: divisa por cuenta, tipos de cambio, totales convertidos a tu divisa base e importe en divisa extranjera por transacción, con sugerencia al tipo del día.
-- **Deudas**: préstamos e hipotecas con pagos, intereses, saldo pendiente y tabla de amortización.
-- **Huchas**: objetivos de ahorro con movimientos vinculados a transacciones reales.
-- **Suscripciones**: coste mensual y anual a partir de tus pagos programados.
-- **Extras de transacción**: enlaces entre transacciones, adjuntos y registro de actividad.
-- **Webhooks**: avisos a una URL propia cuando cambian tus transacciones.
-- **Insights**: ingresos y gastos por periodo, tasa de ahorro y comparación con el mismo mes del año anterior.
-- **Diseño propio**: tema claro limpio y tema oscuro, con la tipografía Geist.
-
-La lista detallada está en [`docs/neobudget/features.md`](docs/neobudget/features.md).
+El detalle de cada área está en [`docs/neobudget/features.md`](docs/neobudget/features.md).
 
 ## Integraciones
 
-| Origen                                                     | Estado                                                                                        |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Interactive Brokers (Flex Web Service)                     | Implementado, sin probar con credenciales reales                                              |
-| Trade Republic                                             | Implementado, **API no oficial** y sin probar contra el servicio real. El PIN nunca se guarda |
-| CSV de brokers                                             | Funciona (formatos en inglés y español, sin duplicados al repetir)                            |
-| Precios (Yahoo Finance, CoinGecko) y tipos de cambio (BCE) | Funciona a través del servidor                                                                |
-| Bybit, Santander (Enable Banking)                          | Pendientes                                                                                    |
+| Origen                                                     | Estado                                                                                             |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| CSV de brokers (inglés y español)                          | Funciona, sin duplicados al repetir la importación                                                 |
+| Precios (Yahoo Finance, CoinGecko) y tipos de cambio (BCE) | Funciona a través del servidor                                                                     |
+| Interactive Brokers (Flex Web Service)                     | Implementado, sin probar con credenciales reales                                                   |
+| Trade Republic                                             | Implementado sobre una API **no oficial**, sin probar contra el servicio real. El PIN no se guarda |
+| Bybit, Santander (Enable Banking)                          | Pendientes                                                                                         |
 
-Las conexiones de brokers solo funcionan con servidor de sincronización conectado.
+Las conexiones con brokers solo funcionan con el servidor de sincronización conectado.
 
 ## Empezar
 
@@ -46,32 +56,50 @@ Requisitos: Node 22 o superior y Yarn 4.
 
 ```bash
 yarn install
-yarn start               # app en http://localhost:3001 (sin servidor: "Don't use a server" y "View demo")
+yarn start               # app en http://localhost:3001
 yarn start:server-dev    # app con servidor de sincronización en http://localhost:5006
 ```
 
-Para alojarlo en un Raspberry Pi, un VPS o un PC propio (variables de entorno, systemd, HTTPS y copias de seguridad), sigue [`docs/neobudget/deployment.md`](docs/neobudget/deployment.md).
+Para probarla sin servidor, elige **Don't use a server** y **View demo**. Los brokers, adjuntos y webhooks necesitan servidor.
 
-## Estructura del código
+## Despliegue en tu servidor
 
-- `packages/loot-core`: lógica, base de datos y cálculos (corre en cualquier plataforma).
-- `packages/desktop-client`: interfaz web en React.
-- `packages/desktop-electron`: aplicación de escritorio.
-- `packages/sync-server`: servidor de sincronización, precios, brokers, adjuntos y webhooks.
-- `packages/component-library`: componentes y temas.
-- `docs/neobudget`: documentación propia de NeoBudget.
+La guía [`docs/neobudget/deployment.md`](docs/neobudget/deployment.md) cubre el servidor de sincronización en un Raspberry Pi, un VPS o un PC propio: compilación, variables de entorno, servicio systemd, proxy inverso con HTTPS y copias de seguridad.
 
-Las novedades de NeoBudget van en módulos y tablas nuevos, con migraciones solo aditivas, para poder traer los cambios de Actual (`upstream`) sin conflictos.
+## Arquitectura
 
-## Seguridad
+| Paquete                      | Contenido                                                       |
+| ---------------------------- | --------------------------------------------------------------- |
+| `packages/loot-core`         | Lógica, base de datos y cálculos; corre en cualquier plataforma |
+| `packages/desktop-client`    | Interfaz web en React                                           |
+| `packages/desktop-electron`  | Aplicación de escritorio                                        |
+| `packages/sync-server`       | Sincronización, precios, brokers, adjuntos y webhooks           |
+| `packages/component-library` | Componentes y temas                                             |
+| `docs/neobudget`             | Documentación propia de NeoBudget                               |
 
-- Tus datos viven en tu servidor. Usa HTTPS si lo expones fuera de tu red.
-- Los PIN y las contraseñas de brokers no se guardan. Los tokens de Interactive Brokers se guardan como secretos del servidor.
-- Los webhooks bloquean redes privadas por defecto y los adjuntos validan tipo y tamaño. Adjuntos y webhooks todavía no están ligados a un usuario concreto, así que no compartas el servidor con personas en las que no confíes.
+Lo nuevo de NeoBudget vive en módulos y tablas propios, con migraciones solo aditivas, para poder traer los cambios de Actual (`upstream`) sin conflictos.
+
+## Seguridad y privacidad
+
+- Tus datos viven en tu servidor. Si lo expones fuera de tu red, usa HTTPS.
+- Los PIN y contraseñas de brokers no se guardan. Los tokens de Interactive Brokers se guardan como secretos del servidor, nunca en el código.
+- Los webhooks bloquean redes privadas por defecto y los adjuntos validan tipo y tamaño.
+- Adjuntos y webhooks todavía no están ligados a un usuario concreto: no compartas el servidor con personas en las que no confíes.
+- La conexión con Trade Republic usa una API no oficial y va contra sus condiciones de uso. Úsala bajo tu responsabilidad.
+
+## Estado y hoja de ruta
+
+Proyecto en desarrollo. Pendiente:
+
+- Traducciones al español.
+- Reparto de la cartera por región y sector.
+- Conectores de Bybit y Santander, y prueba real de Interactive Brokers y Trade Republic.
+- Revisión visual del tema oscuro y de la versión móvil.
+- Más informes y selector de divisa en más pantallas.
 
 ## Contribuir
 
-Revisa [`CLAUDE.md`](CLAUDE.md) y [`AGENTS.md`](AGENTS.md) para las reglas del repositorio, y [`CONTRIBUTING.md`](CONTRIBUTING.md) para el flujo general.
+Las reglas del repositorio están en [`CLAUDE.md`](CLAUDE.md) y [`AGENTS.md`](AGENTS.md); el flujo general, en [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Créditos y licencia
 
